@@ -1,0 +1,24 @@
+<?php
+
+namespace {{namespace}};
+
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{name}} extends Model
+{
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        {{fields}}
+    ];
+
+    protected $casts = [
+        'created_at' => 'Y-m-d H:i:s',
+        'updated_at' => 'Y-m-d H:i:s'
+    ];
+}

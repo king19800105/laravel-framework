@@ -1,0 +1,105 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{{name}}\DestroyRequest;
+use App\Http\Requests\{{name}}\ShowRequest;
+use App\Http\Requests\{{name}}\StoreRequest;
+use App\Http\Requests\{{name}}\UpdateRequest;
+use App\Http\Responders\{{name}}\IndexResponder;
+use App\Http\Responders\{{name}}\ShowResponder;
+use App\Http\Responders\{{name}}\IndexNoPageResponder;
+use App\Http\Responders\NoneResponder;
+use App\Services\{{name}}Service;
+
+/**
+ * Class {{name}}Controller
+ * @package {{namespace}}
+ */
+class {{name}}Controller extends Controller
+{
+
+    protected ${{service_attr}}Service;
+
+    public function __construct({{name}}Service ${{service_attr}}Service)
+    {
+        $this->{{service_attr}}Service = ${{service_attr}}Service;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return IndexResponder
+     */
+    public function index()
+    {
+        $result = $this->{{service_attr}}Service->get{{name}}List();
+        return new IndexResponder($result);
+    }
+
+    /**
+     * Find all data.
+     *
+     * @return IndexNoPageResponder
+     */
+    public function indexAll()
+    {
+        $result = $this->{{service_attr}}Service->get{{name}}AllList();
+        return new IndexNoPageResponder($result);
+    }
+
+    /**
+     * @param ShowRequest $request
+     * @param $id
+     * @return ShowResponder
+     */
+    public function show(ShowRequest $request, $id)
+    {
+        $result = $this->{{service_attr}}Service->get{{name}}($id);
+        return new ShowResponder($result);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param StoreRequest $request
+     * @return NoneResponder
+     * @throws \Throwable
+     */
+    public function store(StoreRequest $request)
+    {
+        $data = $request->validated();
+        $this->{{service_attr}}Service->store{{name}}($data);
+        return new NoneResponder();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param UpdateRequest $request
+     * @param $id
+     * @return NoneResponder
+     * @throws \Throwable
+     */
+    public function update(UpdateRequest $request, $id)
+    {
+        $data = $request->validated();
+        $this->{{service_attr}}Service->update{{name}}($data, $id);
+        return new NoneResponder();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param DestroyRequest $request
+     * @param $id
+     * @return NoneResponder
+     * @throws \Throwable
+     */
+    public function destroy(DestroyRequest $request, $id)
+    {
+        $this->{{service_attr}}Service->delete{{name}}($id);
+        return new NoneResponder();
+    }
+}

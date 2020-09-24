@@ -1,0 +1,27 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Requests\InputAddId;
+use Illuminate\Foundation\Http\FormRequest;
+
+class DestroyRequest extends FormRequest
+{
+    use InputAddId;
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+
+    public function getIdName(): string
+    {
+        return '{{id_name}}';
+    }
+}

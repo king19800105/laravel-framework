@@ -1,0 +1,19 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Responders\BaseResponder;
+
+class ShowResponder extends BaseResponder
+{
+
+    /**
+     * @inheritDoc
+     */
+    protected function transform()
+    {
+        return [
+{{fields_show}}
+        ];
+    }
+}

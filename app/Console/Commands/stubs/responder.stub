@@ -1,0 +1,17 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Http\Responders\BaseResponder;
+
+class DummyClass extends BaseResponder
+{
+
+    /**
+     * @inheritDoc
+     */
+    protected function transform()
+    {
+        // todo...
+    }
+}

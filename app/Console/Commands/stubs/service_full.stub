@@ -1,0 +1,88 @@
+<?php
+
+namespace {{namespace}};
+
+
+use App\Exceptions\SystemException;
+use App\Repositories\Contracts\{{name}}Repository;
+
+class {{name}}Service
+{
+    protected ${{repo_attr}}Repository;
+
+    public function __construct({{name}}Repository ${{repo_attr}}Repository)
+    {
+        $this->{{repo_attr}}Repository = ${{repo_attr}}Repository;
+    }
+
+    /**
+     * 获取有分页列表
+     *
+     * @return mixed
+     */
+    public function get{{name}}List()
+    {
+        return $this->{{repo_attr}}Repository->findList();
+    }
+
+    /**
+     * 获取所有无分页
+     *
+     * @return mixed
+     */
+    public function get{{name}}AllList()
+    {
+        return $this->{{repo_attr}}Repository->findAll();
+    }
+
+    public function get{{name}}($id)
+    {
+        return $this->{{repo_attr}}Repository->findById($id);
+    }
+
+    /**
+     * 添加
+     *
+     * @param $data
+     * @throws \Throwable
+     */
+    public function store{{name}}($data)
+    {
+        ${{repo_attr}} = $this->{{repo_attr}}Repository->create($data);
+        throw_unless(
+            ${{repo_attr}},
+            new SystemException(__('message.system.store_fail'))
+        );
+    }
+
+    /**
+     * 修改
+     *
+     * @param $data
+     * @param $id
+     * @throws \Throwable
+     */
+    public function update{{name}}($data, $id)
+    {
+        $ok = $this->{{repo_attr}}Repository->update($data, $id);
+        throw_unless(
+            $ok,
+            new SystemException(__('message.system.update_fail'))
+        );
+    }
+
+    /**
+     * 删除
+     *
+     * @param $id
+     * @throws \Throwable
+     */
+    public function delete{{name}}($id)
+    {
+        $ok = $this->{{repo_attr}}Repository->delete($id);
+        throw_unless(
+            $ok,
+            new SystemException(__('message.system.delete_fail'))
+        );
+    }
+}

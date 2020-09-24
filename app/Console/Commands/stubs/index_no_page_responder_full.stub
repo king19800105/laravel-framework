@@ -1,0 +1,21 @@
+<?php
+
+namespace {{namespace}};
+
+use App\Http\Responders\BaseResponder;
+
+class IndexNoPageResponder extends BaseResponder
+{
+
+    /**
+     * @inheritDoc
+     */
+    protected function transform()
+    {
+        return $this->result->map(function ($item) {
+            return [
+{{fields_no_page}}
+            ];
+        });
+    }
+}

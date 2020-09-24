@@ -1,0 +1,37 @@
+<?php
+
+namespace DummyNamespace;
+
+
+class DummyClass
+{
+    public function __construct()
+    {
+        // todo...
+    }
+
+    public function getDummyBaseClassList()
+    {
+        // todo...
+    }
+
+    public function getDummyBaseClass($id)
+    {
+        // todo...
+    }
+
+    public function storeDummyBaseClass($data)
+    {
+        // todo...
+    }
+
+    public function updateDummyBaseClass($data, $id)
+    {
+        // todo...
+    }
+
+    public function deleteDummyBaseClass($id)
+    {
+        // todo...
+    }
+}
