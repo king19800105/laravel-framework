@@ -13,8 +13,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        \Illuminate\Validation\ValidationException::class,
-        \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class
+
     ];
 
     /**
@@ -29,6 +28,10 @@ class Handler extends ExceptionHandler
 
     public function report(\Throwable $exception)
     {
+        if ('production' === app()->environment() && $this->shouldntReport($exception)) {
+            return;
+        }
+
         Log::error(
             sprintf(
                 "\r\n[%d] %s: %s in %s:%d\r\n",

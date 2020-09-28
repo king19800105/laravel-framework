@@ -1,11 +1,15 @@
 <?php
 
 return [
+    'unknown_err'        => '未知错误',
+    'illegal_id'         => '非法的主键',
     'id_not_find'        => '访问不存在的元素',
     'store_fail'         => '数据保存失败',
     'update_fail'        => '修改数据失败',
     'delete_fail'        => '删除数据失败',
+    'same_password'      => '新密码和原始密码相同',
     'account_err'        => '账号或密码错误，请检查',
+    'old_password_err'   => '原始密码不正确',
     'user_not_find'      => '没有找到对应的用户',
     'data_not_find'      => '访问的数据不存在',
     'file_not_find'      => '访问的文件不存在',

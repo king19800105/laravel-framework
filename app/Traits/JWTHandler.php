@@ -88,7 +88,7 @@ trait JWTHandler
     /**
      * 登出操作
      */
-    public function logout()
+    public function destroyToken()
     {
         $this->getAuth()->logout();
     }

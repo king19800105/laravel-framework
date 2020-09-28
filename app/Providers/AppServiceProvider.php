@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     protected const
-        TOURIST_UPLOAD_LIMIT = 2, USER_UPLOAD_LIMIT = 60;
+        TOURIST_UPLOAD_LIMIT = 2, USER_UPLOAD_LIMIT = 60, ADMIN_AUTH_LIMIT = 30;
 
     /**
      * Register any application services.
@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
             return $request->user()
                 ? Limit::perMinute(self::USER_UPLOAD_LIMIT)
                 : Limit::perMinute(self::TOURIST_UPLOAD_LIMIT);
+        });
+
+        // 权限限流
+        RateLimiter::for('auth', function (Request $request) {
+            return Limit::perMinute(self::ADMIN_AUTH_LIMIT);
         });
     }
 }

@@ -41,7 +41,9 @@ class {{class}} extends {{baseclass}} implements {{interface}}
 
     public function findById($id)
     {
-        return $this->model->find($id);
+        return $this
+            ->model
+            ->find($id);
     }
 
     public function findList()
@@ -49,6 +51,7 @@ class {{class}} extends {{baseclass}} implements {{interface}}
         return $this
             ->model
             ->select('*')
+            ->latest()
             ->paginate(static::PAGE_NUM);
     }
 
@@ -57,6 +60,7 @@ class {{class}} extends {{baseclass}} implements {{interface}}
         return $this
             ->model
             ->select('*')
+            ->latest()
             ->get();
     }
 }

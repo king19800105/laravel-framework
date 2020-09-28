@@ -58,6 +58,10 @@ class LogQueueHandler extends AbstractProcessingHandler
             foreach ($routeParam as $key => $item) {
                 $result['extra']['api'] = str_replace('{' . $key . '}', $item, $result['extra']['api'], $cnt);
             }
+        } else {
+            $base = optional(url())->previous() ?? '';
+            $current = optional(url())->current() ?? '';
+            $result['extra']['api'] = str_replace($base, '', $current);
         }
 
         $msg               = $result['message'];

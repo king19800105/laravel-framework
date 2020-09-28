@@ -4,8 +4,8 @@ namespace App\Models;
 
 
 use EloquentFilter\Filterable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -42,11 +42,6 @@ class Admin extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    protected $casts = [
-        'created_at' => 'Y-m-d H:i:s',
-        'updated_at' => 'Y-m-d H:i:s'
-    ];
-
     /**
      * @inheritDoc
      */
@@ -62,5 +57,4 @@ class Admin extends Authenticatable implements JWTSubject
     {
         return ['role' => 'admin'];
     }
-
 }

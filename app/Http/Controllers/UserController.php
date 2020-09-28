@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -27,27 +26,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param $id
@@ -55,18 +33,15 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $this->userService->showUserDetailById($id);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function getInfo(Request $request)
     {
-        //
+        $info = $request->user();
+        // todo... 返回用户信息，用户信息不存在则报错
+        // todo... 需要返回一个responder
+//        return ;
     }
 
     /**

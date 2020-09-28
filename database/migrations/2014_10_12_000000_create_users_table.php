@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('wx_open_id', 50)->nullable(false)->default('');
             $table->string('wx_union_id', 50)->nullable(false)->default('');
             $table->char('mobile', 11)->nullable(false)->default('')->comment('手机号');
+            $table->string('email', 50)->nullable(false)->default('')->comment('邮箱地址，密码找回时凭证');
             $table->string('password')->nullable(false)->default('')->comment('用户密码');
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('用户状态');
             $table->softDeletes();
@@ -26,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->unique('mobile');
             $table->index('wx_open_id');
             $table->index('wx_union_id');
+            $table->index('email');
         });
     }
 

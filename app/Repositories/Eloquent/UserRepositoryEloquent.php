@@ -4,11 +4,11 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\User;
-use App\Repositories\Contracts\AdminRepository;
 use App\Repositories\Contracts\BaseRepository;
+use App\Repositories\Contracts\UserRepository;
 
 
-class UserRepositoryEloquent extends BaseRepository implements AdminRepository
+class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
     protected const CACHE_TAG = 'UserRepositoryEloquent:tag';
 
@@ -53,6 +53,15 @@ class UserRepositoryEloquent extends BaseRepository implements AdminRepository
             ->select('*')
             ->latest()
             ->paginate(static::PAGE_NUM);
+    }
+
+    public function findByMobile($mobile)
+    {
+        return $this
+            ->model
+            ->select('*')
+            ->where(['mobile' => $mobile])
+            ->first();
     }
 }
 

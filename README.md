@@ -33,9 +33,10 @@
 - [x] 使用 phpreids 代替 predis
 - [x] 支持一条指令生成业务模块（整个业务流）
 - [x] 限流改支持用户id + ip限流
+- [x] 支持事件机制
 - [ ] 使用redis的bitmap实现布隆过滤器中间件
-- [ ] 使用优化后的事件监听机制，Laravel8特有
 - [ ] 编写excel导入和导出的demo，其他项目中应该已经有demo（README.md）
+- [ ] 特殊接口限流，如：用户修改密码操作，同一个用户id，一分钟只能执行3次等
 
 ### app下结构说明
 - 控制器 Http/Controller
@@ -102,6 +103,8 @@ $this->model
 - php artisan jwt:secret
 - php artisan storage:link
 - php artisan opcache:clear
+- php artisan route:clear
+- php artisan route:cache
 
 ### 其他
 - 依赖注入顺序：Model -> Repository -> Service -> Controller
