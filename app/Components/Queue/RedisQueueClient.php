@@ -114,7 +114,7 @@ class RedisQueueClient implements QueueClient
     }
 
     /**
-     * 集合长度
+     * 集合出队
      *
      * @param $key
      * @return mixed

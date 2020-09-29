@@ -35,8 +35,6 @@
 - [x] 限流改支持用户id + ip限流
 - [x] 支持事件机制
 - [ ] 使用redis的bitmap实现布隆过滤器中间件
-- [ ] 编写excel导入和导出的demo，其他项目中应该已经有demo（README.md）
-- [ ] 特殊接口限流，如：用户修改密码操作，同一个用户id，一分钟只能执行3次等
 
 ### app下结构说明
 - 控制器 Http/Controller
@@ -96,6 +94,102 @@ $this->model
     ->active()
     ->paginate(static::PAGE_NUM);
 ```
+
+### 组件使用
+
+##### 文件相关操作
+
+- excel导出
+
+```php
+$savePath = $this->fileHandler
+    ->setSheet(3)
+    ->setRow('A1', 15)
+    ->setColumn('A:A', 50)
+    ->setExportModel(FileHandler::MODEL_FIXED_MEMORY)
+    ->excelExport(
+        storage_path('app/public'),
+        'aa.csv',
+        ['Item', 'Cost'],
+        [
+            ['Rent', 1000],
+            ['Gas', 100],
+            ['Food', 300],
+            ['Gym', 50],
+        ]);
+dd($savePath);
+```
+
+- excel导入
+
+```php
+$base      = 2;
+// 自定义处理回调
+$handlerFn = function ($sheet, $value) use ($base) {
+    if (!empty($value[1]) && is_numeric($value[1]) && 'Sheet3' === $sheet) {
+        $value[1] *= $base;
+    }
+
+    return $value;
+};
+$handler = $this->fileHandler
+    ->setImportModel(FileHandler::IMPORT_ROW_MODEL)
+    ->setParseType([
+        '3' => [Excel::TYPE_STRING, Excel::TYPE_DOUBLE],
+        '1' => [Excel::TYPE_INT, Excel::TYPE_INT]
+    ])
+    ->excelImport(
+        storage_path('app/public'),
+        'aa.csv',
+        $handlerFn
+    );
+dd($handler);
+```
+
+- 文件上传和下载
+
+```php
+// 下载 storage/app/public/aa.csv
+$this->fileHandler->download('public/aa.csv', 'bb.csv');
+// 上传 参数1可以是上传的name，也可以是FILES对象，参数2是存储位置，参数3是新名称
+$this->fileHandler->upload($file, 'public', 'cc.csv');
+```
+
+- 文件判断和删除
+
+```php
+// 文件是否在 storage/app/public/aa.csv 下
+$this->fileHandler->exists('public/aa.csv');
+// 删除文件
+$this->fileHandler->delete('public/aa.csv');
+```
+
+##### 其他组件
+
+- 邮件发送，默认模板在：resource/views/emails/default.blade.php
+
+```php
+// 参数1表示要发送到的邮件地址，参数2是模板替换，参数3是邮件标题
+send_email(['king19800105@163.com'], ['title' => 'aaa', 'content' => 'bbb'], '来自于大飞哥的通知');
+```
+
+- 本地apcu使用，支持原子性操作
+
+```php
+$a = [1, 2, 3];
+$this->localCache->localSet('aaa', $a, 20);
+$result = $this->localCache->localGet('aaa');
+dd($result); // [1, 2, 3]
+```
+
+- hash id 转换
+
+```php
+$en = $this->hash->encode(120000003); // oLN6V0Bl
+$de = $this->hash->decode($en); // 120000003 
+```
+
+- 断路器使用：https://github.com/king19800105/breaker
 
 ### 项目部署
 - cp .env.example .env

@@ -26,7 +26,7 @@ use App\Http\Controllers\{
 Route::group(['prefix' => 'auth/v1', 'middleware' => ['api']], function ($router) {
     // 用户相关
     $router->post('register', [LoginController::class, 'register']);
-    $router->get('login', [LoginController::class, 'login']);
+    $router->get('login', [LoginController::class, 'login'])->middleware(['throttle:userLogin']);
     $router->get('logout', [LoginController::class, 'logout']);
     $router->put('reset-password', [PasswordController::class, 'resetPassword']);
     $router->put('forget-password', [PasswordController::class, 'forgetPassword']);
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'backend/v1', 'middleware' => ['api', 'auth:admin']], 
 });
 
 // 用户中心
-Route::group(['prefix' => 'user-center/v1', 'middleware' => ['api', 'auth:api']], function ($router) {
+Route::group(['prefix' => 'user-center/v1', 'middleware' => ['api', 'auth:api', 'throttle:id']], function ($router) {
     $router->get('info', [UserController::class, 'getInfo']);
 });
 

@@ -4,13 +4,13 @@
 namespace App\Components\Hash;
 
 
-use Hashids\HashidsInterface;
+use Hashids\Hashids;
 
 class HashHandler implements IHash
 {
     protected $hash;
 
-    public function __construct(HashidsInterface $hashIds)
+    public function __construct(Hashids $hashIds)
     {
         $this->hash = $hashIds;
     }

@@ -6,6 +6,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\User;
 use App\Repositories\Contracts\BaseRepository;
 use App\Repositories\Contracts\UserRepository;
+use App\Repositories\Filters\UserIndexFilter;
 
 
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
@@ -50,6 +51,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return $this
             ->model
+            ->filter(request()->only(['mobile']), UserIndexFilter::class)
             ->select('*')
             ->latest()
             ->paginate(static::PAGE_NUM);

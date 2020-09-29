@@ -6,6 +6,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\Admin;
 use App\Repositories\Contracts\AdminRepository;
 use App\Repositories\Contracts\BaseRepository;
+use App\Repositories\Filters\AdminIndexFilter;
 
 
 class AdminRepositoryEloquent extends BaseRepository implements AdminRepository
@@ -50,6 +51,7 @@ class AdminRepositoryEloquent extends BaseRepository implements AdminRepository
     {
         return $this
             ->model
+            ->filter(request()->only(['name']), AdminIndexFilter::class)
             ->select('*')
             ->latest()
             ->paginate(static::PAGE_NUM);

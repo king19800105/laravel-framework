@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\User\IndexRequest;
+use App\Http\Requests\User\ShowRequest;
+use App\Http\Responders\NoneResponder;
+use App\Http\Responders\User\GetInfoResponder;
+use App\Http\Responders\User\IndexResponder;
+use App\Http\Responders\User\ShowResponder;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
@@ -16,54 +22,52 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 用户列表
      *
-     * @return \Illuminate\Http\Response
+     * @param IndexRequest $request
+     * @return IndexResponder
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-
+        $result = $this->userService->getUserList();
+        return new IndexResponder($result);
     }
 
     /**
-     * Display the specified resource.
+     * 用户详情
      *
+     * @param ShowRequest $request
      * @param $id
-     * @throws SystemException
+     * @return ShowResponder
      */
-    public function show($id)
+    public function show(ShowRequest $request, $id)
     {
-
+        $result = $this->userService->getUser($id);
+        return new ShowResponder($result);
     }
 
+    /**
+     * 获取用户信息
+     *
+     * @param Request $request
+     * @return GetInfoResponder
+     */
     public function getInfo(Request $request)
     {
         $info = $request->user();
-        // todo... 返回用户信息，用户信息不存在则报错
-        // todo... 需要返回一个responder
-//        return ;
+        return new GetInfoResponder($info);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 删除用户
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return NoneResponder
+     * @throws \Throwable
      */
     public function destroy($id)
     {
-        //
+        $this->userService->deleteUser($id);
+        return new NoneResponder();
     }
 }

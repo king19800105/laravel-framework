@@ -3,12 +3,12 @@
 namespace App\Http\Requests\User;
 
 
-use App\Traits\VerifyRequestId;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowRequest extends FormRequest
+
+class IndexRequest extends FormRequest
 {
-    use VerifyRequestId;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -16,7 +16,12 @@ class ShowRequest extends FormRequest
      */
     public function authorize()
     {
-        $this->setIdName('user');
+//        Gate::authorize('view', User::class);
         return true;
+    }
+
+    public function rules()
+    {
+        return [];
     }
 }

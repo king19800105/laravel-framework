@@ -16,6 +16,12 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * 通用用户id获取用户信息
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getUser($id)
     {
         return $this->userRepository->findById($id);
@@ -50,8 +56,38 @@ class UserService
         );
     }
 
+    /**
+     * 根据手机号获取用户信息
+     *
+     * @param $mobile
+     * @return mixed
+     */
     public function getUserByMobile($mobile)
     {
         return $this->userRepository->findByMobile($mobile);
+    }
+
+    /**
+     * 用户列表
+     *
+     * @return mixed
+     */
+    public function getUserList()
+    {
+        return $this->userRepository->findList();
+    }
+
+    /**
+     * 删除用户（软删除）
+     *
+     * @param $id
+     * @throws \Throwable
+     */
+    public function deleteUser($id)
+    {
+        throw_unless(
+            $this->userRepository->delete($id),
+            new AccountException(__('reason.delete_fail'))
+        );
     }
 }

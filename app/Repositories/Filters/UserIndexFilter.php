@@ -16,8 +16,8 @@ class UserIndexFilter extends ModelFilter
 
     protected $drop_id = false;
 
-    public function name($val)
+    public function mobile($val)
     {
-        return $this->where('name', 'like', $val . '%');
+        return $this->where('mobile', $val);
     }
 }
