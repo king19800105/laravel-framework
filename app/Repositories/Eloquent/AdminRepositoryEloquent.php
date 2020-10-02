@@ -57,7 +57,7 @@ class AdminRepositoryEloquent extends BaseRepository implements AdminRepository
                 ->syncRoles([])
                 ->delete();
         });
-        
+
         return true;
     }
 
