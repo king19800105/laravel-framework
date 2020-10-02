@@ -28,13 +28,6 @@ abstract class BaseRepository implements IRepository
     protected $batch;
 
     /**
-     * 日志
-     *
-     * @var bool
-     */
-    protected $sqlLog = false;
-
-    /**
      * BaseRepository constructor.
      * @param Batch $batch
      * @throws \Throwable
@@ -44,9 +37,6 @@ abstract class BaseRepository implements IRepository
         $this->batch = $batch;
         $this->resolveEntity();
         $this->boot();
-        if ($this->sqlLog) {
-            DB::connection()->enableQueryLog();
-        }
     }
 
     /**
@@ -55,7 +45,7 @@ abstract class BaseRepository implements IRepository
     protected function boot()
     {
         if ('local' === config('app.env')) {
-            $this->setLogPrint(true);
+            DB::connection()->enableQueryLog();
         }
     }
 
@@ -129,16 +119,6 @@ abstract class BaseRepository implements IRepository
     }
 
     /**
-     * 是否开启日志打印
-     *
-     * @param bool $log
-     */
-    protected function setLogPrint($log = true)
-    {
-        $this->sqlLog = $log;
-    }
-
-    /**
      * 使用缓存来记录数据
      *
      * @param $key
@@ -150,22 +130,24 @@ abstract class BaseRepository implements IRepository
     protected function getOrCache($key, callable $callableOnMiss, $tag = null, $second = self::DEFAULT_CACHE_TIME)
     {
         $key = static::CACHE_PREFIX . $key;
-        if (!$tag) {
-            return Cache::remember($key, $second, $callableOnMiss);
-        }
-
         return Cache::tags($tag)->remember($key, $second, $callableOnMiss);
     }
 
     /**
-     * 根据标记删除
+     * 根据标记删除并处理业务
      *
      * @param $tag
-     * @return mixed
+     * @param callable $callableOnMiss
+     * @return bool
      */
-    protected function cleanByTag($tag)
+    protected function cleanByTag($tag, callable $callableOnMiss)
     {
-        return Cache::tags($tag)->flush();
+        $ok = $callableOnMiss();
+        if ($ok) {
+            Cache::tags($tag)->flush();
+        }
+
+        return $ok;
     }
 
 }

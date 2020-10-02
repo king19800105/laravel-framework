@@ -20,12 +20,13 @@ class AdminService
      * 添加管理员
      *
      * @param array $data
+     * @param array $roleIds
      * @throws \Throwable
      */
-    public function storeAdmin(array $data)
+    public function storeAdmin(array $data, array $roleIds = [])
     {
         throw_unless(
-            $this->adminRepository->create($data),
+            $this->adminRepository->create($data, $roleIds),
             new AccountException(__('reason.store_fail'))
         );
     }
@@ -56,12 +57,13 @@ class AdminService
      *
      * @param array $data
      * @param $id
+     * @param array $roleIds
      * @throws \Throwable
      */
-    public function updateAdmin(array $data, $id)
+    public function updateAdmin(array $data, $id, $roleIds = [])
     {
         throw_unless(
-            $this->adminRepository->update($data, $id),
+            $this->adminRepository->update($data, $id, $roleIds),
             new AccountException(__('reason.update_fail'))
         );
     }

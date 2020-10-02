@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Permission;
 
+namespace App\Http\Requests\Role;
 
+use App\Traits\VerifyRequestId;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
-
-class IndexRequest extends FormRequest
+class ShowRequest extends FormRequest
 {
+    use VerifyRequestId;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -16,14 +18,8 @@ class IndexRequest extends FormRequest
      */
     public function authorize()
     {
+        $this->setIdName('role');
 //        Gate::authorize('view', Admin::class);
         return true;
-    }
-
-    public function rules()
-    {
-        return [
-            'name' => 'string|between:2,30'
-        ];
     }
 }

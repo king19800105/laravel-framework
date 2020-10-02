@@ -15,14 +15,13 @@ class IndexResponder extends BaseResponder
      */
     protected function transform()
     {
-        $this->result->getCollection()->transform(function (Permission $permission) {
+        return $this->result->map(function (Permission $permission) {
             return [
                 'id'         => $permission->id,
                 'name'       => $permission->name,
+                'updated_at' => $this->formatDate($permission->updated_at),
                 'created_at' => $this->formatDate($permission->created_at),
             ];
         });
-
-        return $this->result;
     }
 }

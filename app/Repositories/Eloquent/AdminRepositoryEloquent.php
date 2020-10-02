@@ -18,26 +18,47 @@ class AdminRepositoryEloquent extends BaseRepository implements AdminRepository
         return Admin::class;
     }
 
-    public function create($data)
+    public function create($data, $roleIds = [])
     {
-        return $this
-            ->model
-            ->create($data);
+        if (empty($roleIds)) {
+            return $this->model->create($data);
+        }
+
+        BaseRepository::transaction();
+        $admin = $this->model->create($data)->syncRoles($roleIds);
+        if ($admin) {
+            BaseRepository::commit();
+            return $admin;
+        }
+
+        BaseRepository::rollBack();
+        return null;
     }
 
-    public function update($data, $id)
+    public function update($data, $id, $roleIds = [])
     {
-        return $this
-            ->model
-            ->find($id)
-            ->update($data);
+        BaseRepository::transaction(function () use ($data, $id, $roleIds) {
+            $this
+                ->model
+                ->find($id)
+                ->syncRoles($roleIds)
+                ->update($data);
+        });
+
+        return true;
     }
 
     public function delete($id)
     {
-        return $this
-            ->model
-            ->destroy($id);
+        BaseRepository::transaction(function () use ($id) {
+            $this
+                ->model
+                ->find($id)
+                ->syncRoles([])
+                ->delete();
+        });
+        
+        return true;
     }
 
     public function findById($id)

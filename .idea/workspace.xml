@@ -2,27 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="009f10fa-7714-409d-a7d7-4ae720889c11" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PermissionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Permission/DestroyRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Permission/IndexRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Permission/StoreRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Permission/UpdateRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/StoreRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/UpdateRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Responders/Permission/IndexResponder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Permission.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/PermissionRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Contracts/RoleRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquent/PermissionRepositoryEloquent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/Eloquent/RoleRepositoryEloquent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/PermissionService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/AssignRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/DestroyRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/IndexRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Role/ShowRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Responders/Role/IndexResponder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Responders/Role/ShowResponder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/StoreRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/StoreRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/UpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/UpdateRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Permission/IndexRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Permission/IndexRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Responders/Permission/IndexResponder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Responders/Permission/IndexResponder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Contracts/AdminRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Contracts/AdminRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Contracts/BaseRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Contracts/BaseRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Contracts/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Contracts/RoleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Eloquent/AdminRepositoryEloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Eloquent/AdminRepositoryEloquent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Eloquent/PermissionRepositoryEloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Eloquent/PermissionRepositoryEloquent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Repositories/Eloquent/RoleRepositoryEloquent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/Eloquent/RoleRepositoryEloquent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/AdminService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/AdminService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/PermissionService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/PermissionService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/zh_CN/message.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh_CN/message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/zh_CN/reason.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh_CN/reason.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +195,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests/Role" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Responders/Role" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -212,18 +214,26 @@
       <recent name="$PROJECT_DIR$/app" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Responders/Role" />
       <recent name="$PROJECT_DIR$/app/Http/Requests/Role" />
+      <recent name="$PROJECT_DIR$/app/Http/Responders" />
       <recent name="$PROJECT_DIR$/app/Repositories/Eloquent" />
       <recent name="$PROJECT_DIR$/app/Repositories/Contracts" />
-      <recent name="$PROJECT_DIR$/app/Http/Responders/Permission" />
-      <recent name="$PROJECT_DIR$/app/Http/Requests/Permission" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHP Script.RoleController.php">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="RoleController.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/Http/Controllers/RoleController.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.RoleController.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -241,7 +251,7 @@
       <workItem from="1600998388446" duration="55231000" />
       <workItem from="1601457313598" duration="1057000" />
       <workItem from="1601522677693" duration="231000" />
-      <workItem from="1601607286463" duration="3259000" />
+      <workItem from="1601607286463" duration="12825000" />
     </task>
     <servers />
   </component>
@@ -262,16 +272,32 @@
       <screen x="1440" y="-180" width="1920" height="1080" />
     </state>
     <state x="2162" y="-180" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900/1440.-180.1920.1080@1440.-180.1920.1080" timestamp="1601284909129" />
-    <state x="524" y="252" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601611147277">
+    <state x="524" y="252" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601648992123">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="2138" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900/1440.-180.1920.1080@1440.-180.1920.1080" timestamp="1601365455720" />
-    <state x="524" y="252" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1601611147277" />
+    <state x="524" y="252" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1601648992123" />
     <state x="2138" y="139" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/43.23.1397.877/1440.-157.1920.1057@1440.-157.1920.1057" timestamp="1600936040155" />
     <state x="506" y="353" key="ComposerInitDialogKey" timestamp="1600680427852">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="506" y="353" key="ComposerInitDialogKey/0.0.1440.900@0.0.1440.900" timestamp="1600680427852" />
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom" timestamp="1601649500483">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="252" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1601649500483" />
+    <state width="1398" height="252" key="GridCell.Tab.0.center" timestamp="1601649500481">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="252" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1601649500481" />
+    <state width="1398" height="252" key="GridCell.Tab.0.left" timestamp="1601649500480">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="252" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1601649500480" />
+    <state width="1398" height="252" key="GridCell.Tab.0.right" timestamp="1601649500482">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="252" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1601649500482" />
     <state x="673" y="447" key="NewPhpClassDialog" timestamp="1601611100407">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -297,14 +323,23 @@
       <screen x="1440" y="-180" width="1920" height="1080" />
     </state>
     <state x="2066" y="110" width="899" height="544" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1440.900/1440.-180.1920.1080@1440.-180.1920.1080" timestamp="1600918598416" />
-    <state x="2080" y="117" width="639" height="486" key="find.popup" timestamp="1601196677817">
-      <screen x="1440" y="-180" width="1920" height="1080" />
+    <state x="480" y="248" width="683" height="486" key="find.popup" timestamp="1601649023846">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="2080" y="117" width="639" height="486" key="find.popup/0.0.1440.900/1440.-180.1920.1080@1440.-180.1920.1080" timestamp="1601196677817" />
-    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup" timestamp="1601611544586">
+    <state x="480" y="248" width="683" height="486" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1601649023846" />
+    <state x="445" y="87" key="refactoring.ChangeSignatureDialog" timestamp="1601655986706">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="445" y="87" key="refactoring.ChangeSignatureDialog/0.0.1440.900@0.0.1440.900" timestamp="1601655986706" />
+    <state x="385" y="210" key="run.anything.popup" timestamp="1601649498973">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="210" key="run.anything.popup/0.0.1440.900@0.0.1440.900" timestamp="1601649498973" />
+    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup" timestamp="1601656927309">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="2065" y="61" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.-180.1920.1080@1440.-180.1920.1080" timestamp="1601458113767" />
-    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1601611544586" />
+    <state x="469" y="201" width="670" height="564" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1601656927309" />
   </component>
 </project>

@@ -13,12 +13,14 @@ return [
         'password' => '管理员密码',
         'name'     => '姓名',
         'status'   => '状态',
+        'role_ids' => '角色列表'
     ],
     'permission' => [
         'name' => '权限名称',
     ],
     'role'       => [
-        'name' => '角色名称',
+        'name'           => '角色名称',
+        'permission_ids' => '权限列表'
     ],
     //end-field
 ];

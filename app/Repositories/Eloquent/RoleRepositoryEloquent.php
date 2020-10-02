@@ -35,16 +35,22 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 
     public function delete($id)
     {
-        return $this
-            ->model
-            ->destroy($id);
+        BaseRepository::transaction(function() use ($id) {
+            $this->model->find($id)->syncPermissions([]);
+            $this->model->destroy($id);
+        });
+
+        return true;
     }
 
     public function findById($id)
     {
-        return $this
-            ->model
-            ->find($id);
+        $model = $this->model->find($id);
+        if ($model) {
+            return $model->load('permissions');
+        }
+
+        return $model;
     }
 
     public function findList()
@@ -53,7 +59,15 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
             ->model
             ->select('*')
             ->latest()
-            ->paginate(static::PAGE_NUM);
+            ->get();
+    }
+
+    public function assign($roleId, $permissionIds)
+    {
+        return $this
+            ->model
+            ->find($roleId)
+            ->syncPermissions($permissionIds);
     }
 }
 

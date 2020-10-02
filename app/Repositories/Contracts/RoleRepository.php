@@ -15,4 +15,6 @@ interface RoleRepository
     public function update(array $data, $id);
 
     public function delete($id);
+
+    public function assign($roleId, $permissionIds);
 }

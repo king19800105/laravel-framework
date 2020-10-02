@@ -10,9 +10,9 @@ interface AdminRepository
 
     public function findList();
 
-    public function create(array $data);
+    public function create(array $data, $roleIds = []);
 
-    public function update(array $data, $id);
+    public function update(array $data, $id, $roleIds = []);
 
     public function delete($id);
 }

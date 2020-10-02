@@ -45,6 +45,7 @@ Route::group(['prefix' => 'backend/v1', 'middleware' => ['api', 'auth:admin']], 
     $router->resource('user', UserController::class);
     $router->resource('permission', PermissionController::class);
     $router->resource('role', RoleController::class);
+    $router->post('role-assign-permission', [RoleController::class, 'assign']);
 });
 
 // 用户中心

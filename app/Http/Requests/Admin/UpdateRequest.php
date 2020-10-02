@@ -20,7 +20,7 @@ class UpdateRequest extends StoreRequest
     {
         return array_merge(parent::rules(), [
             'mobile'   => ['bail', 'required', new ValidMobile(), 'unique:admins,mobile,' . $this->admin],
-            'password' => 'required|string|between:8,40',
+            'password' => 'string|between:8,40',
         ]);
     }
 }

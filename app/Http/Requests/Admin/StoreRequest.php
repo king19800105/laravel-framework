@@ -30,6 +30,7 @@ class StoreRequest extends FormRequest
             'mobile'   => ['bail', 'required', new ValidMobile(), 'unique:admins'],
             'name'     => 'required|string|between:2,30',
             'password' => 'required|string|between:8,40|confirmed',
+            'role_ids' => 'array',
         ];
     }
 
@@ -44,6 +45,7 @@ class StoreRequest extends FormRequest
             'name'     => __('message.admin.name'),
             'mobile'   => __('message.admin.mobile'),
             'password' => __('message.admin.password'),
+            'role_ids' => __('message.admin.role_ids')
         ];
     }
 }
