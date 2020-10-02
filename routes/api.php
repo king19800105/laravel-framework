@@ -7,6 +7,8 @@ use App\Http\Controllers\{
     PasswordController,
     AdminController,
     UserController,
+    PermissionController,
+    RoleController,
     ArticleController
 };
 
@@ -41,6 +43,8 @@ Route::group(['prefix' => 'auth/v1', 'middleware' => ['api']], function ($router
 Route::group(['prefix' => 'backend/v1', 'middleware' => ['api', 'auth:admin']], function ($router) {
     $router->resource('admin', AdminController::class);
     $router->resource('user', UserController::class);
+    $router->resource('permission', PermissionController::class);
+    $router->resource('role', RoleController::class);
 });
 
 // 用户中心

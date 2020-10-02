@@ -191,6 +191,23 @@ $de = $this->hash->decode($en); // 120000003
 
 - 断路器使用：https://github.com/king19800105/breaker
 
+- 加锁和解锁
+
+```php
+// 方法中加锁
+$this->lockOwner = uniqid('pharmacy_store_run_');
+$this->lockKey   = 'lock:user:id:123';
+lock($this->lockKey, 10, $this->lockOwner);
+
+// 析构方法中解锁
+public function __destruct() {
+    if ($this->lockOwner && $this->lockKey) {
+        unlock($this->lockKey, 10, $this->lockOwner);
+    }
+}
+
+```
+
 ### 项目部署
 - cp .env.example .env
 - php artisan key:generate

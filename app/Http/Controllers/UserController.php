@@ -9,6 +9,7 @@ use App\Http\Responders\NoneResponder;
 use App\Http\Responders\User\GetInfoResponder;
 use App\Http\Responders\User\IndexResponder;
 use App\Http\Responders\User\ShowResponder;
+use App\Models\Role;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 

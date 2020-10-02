@@ -15,15 +15,10 @@ return [
         'status'   => '状态',
     ],
     'permission' => [
-        'name'      => '权限名称',
-        'belong_to' => '所属分组',
-        'uri'       => '路由地址',
-        'ids'       => '权限列表'
+        'name' => '权限名称',
     ],
     'role'       => [
-        'name'     => '角色名称',
-        'ids'      => '角色列表',
-        'auth_ids' => '权限列表'
+        'name' => '角色名称',
     ],
     //end-field
 ];
