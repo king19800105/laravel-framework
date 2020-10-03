@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Exceptions\SystemException;
 use App\Http\Requests\Permission\IndexRequest;
 use App\Http\Requests\Permission\DestroyRequest;
 use App\Http\Requests\Permission\StoreRequest;

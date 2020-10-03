@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role'             => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'operate'          => \App\Http\Middleware\OperateSave::class,
-        'breaker'          => \App\Http\Middleware\CircuitBreaker::class
+        'breaker'          => \App\Http\Middleware\CircuitBreaker::class,
+        'bloom'            => \App\Http\Middleware\BloomFilter::class
     ];
 }

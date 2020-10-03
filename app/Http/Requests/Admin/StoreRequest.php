@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Rules\ValidMobile;
+use App\Models\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,7 +16,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-//        Gate::authorize('create', Admin::class);
+        Gate::authorize('create', Admin::class);
         return true;
     }
 

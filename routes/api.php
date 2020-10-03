@@ -25,6 +25,9 @@ use App\Http\Controllers\{
 
 
 // 限流组件使用：middleware(['throttle:uploads'])
+// 断路器组件使用：middleware('breaker:permission.handler')
+// 操作日志组件使用：middleware('operate:角色模块')
+// 布隆过滤器组件使用：resource路由 middleware('bloom:role')，普通路由 middleware('bloom:role,GET')
 Route::group(['prefix' => 'auth/v1', 'middleware' => ['api']], function ($router) {
     // 用户相关
     $router->post('register', [LoginController::class, 'register']);

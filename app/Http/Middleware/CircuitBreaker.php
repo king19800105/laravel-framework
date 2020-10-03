@@ -18,6 +18,8 @@ class CircuitBreaker
 {
     use FormatResponse;
 
+    protected const TIMEOUT = 3;
+
     /**
      * @param Request $request
      * @param \Closure $next
@@ -56,7 +58,7 @@ class CircuitBreaker
         // 校验执行是否成功
         $checker =  function (JsonResponse $response, float $elapsed) use ($configs) {
             $ret = null !== $response->exception;
-            $isTimeout = $elapsed >= 3;
+            $isTimeout = $elapsed >= self::TIMEOUT;
             return !$ret && !$isTimeout;
         };
         // 断路器打开时返回的数据

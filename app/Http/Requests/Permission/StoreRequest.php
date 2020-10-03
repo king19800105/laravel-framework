@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Permission;
 
 
+use App\Models\Permission;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,7 +16,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-//        Gate::authorize('create', Admin::class);
+        Gate::authorize('create', Permission::class);
         return true;
     }
 

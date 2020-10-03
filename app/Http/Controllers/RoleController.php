@@ -14,6 +14,7 @@ use App\Http\Responders\NoneResponder;
 use App\Http\Responders\Role\IndexResponder;
 use App\Http\Responders\Role\ShowResponder;
 use App\Services\PermissionService;
+use Illuminate\Support\Facades\DB;
 
 class RoleController
 {

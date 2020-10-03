@@ -15,7 +15,7 @@ class AssignRequest extends FormRequest
      */
     public function authorize()
     {
-//        Gate::authorize('assign', Role::class);
+        Gate::authorize('assign', Role::class);
         return true;
     }
 

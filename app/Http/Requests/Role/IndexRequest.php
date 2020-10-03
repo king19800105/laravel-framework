@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Role;
 
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 
 class IndexRequest extends FormRequest
@@ -16,7 +18,7 @@ class IndexRequest extends FormRequest
      */
     public function authorize()
     {
-//        Gate::authorize('view', Admin::class);
+        Gate::authorize('viewAny', Role::class);
         return true;
     }
 

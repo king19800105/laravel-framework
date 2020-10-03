@@ -4,6 +4,7 @@
 namespace App\Http\Requests\Permission;
 
 
+use App\Models\Permission;
 use App\Traits\VerifyRequestId;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -20,7 +21,7 @@ class DestroyRequest extends FormRequest
     public function authorize()
     {
         $this->setIdName('permission');
-//        Gate::authorize('delete', Admin::class);
+        Gate::authorize('delete', Permission::class);
         return true;
     }
 }

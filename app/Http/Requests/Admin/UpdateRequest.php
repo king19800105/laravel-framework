@@ -12,7 +12,7 @@ class UpdateRequest extends StoreRequest
 {
     public function authorize()
     {
-//        Gate::authorize('update', Admin::class);
+        Gate::authorize('update', Admin::class);
         return true;
     }
 

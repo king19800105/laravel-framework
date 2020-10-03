@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 
 
 use App\Components\Logging\LogQueueHandler;
-use App\Components\Queue\QueueClient;
 use Illuminate\Http\Request;
 
 /**
@@ -27,9 +26,8 @@ class OperateSave
 
     public function handle(Request $request, \Closure $next, $module, $type = null)
     {
-        $method   = $request->method();
-        $type     = $type ?? $method;
-        $exec     = array_key_exists($type, static::OPERATE_MAPPING) ? static::OPERATE_MAPPING[$type] : null;
+        $type     = $type ?? $request->method();
+        $exec     = array_key_exists($type, self::OPERATE_MAPPING) ? self::OPERATE_MAPPING[$type] : null;
         $response = $next($request);
         if ($exec && empty($response->exception) && optional($request->user())->id) {
             log_info([

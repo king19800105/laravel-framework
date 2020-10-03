@@ -5,6 +5,9 @@ namespace App\Http\Requests\Role;
 
 
 
+use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
+
 class UpdateRequest extends StoreRequest
 {
     /**
@@ -14,7 +17,7 @@ class UpdateRequest extends StoreRequest
      */
     public function authorize()
     {
-//        Gate::authorize('create', Admin::class);
+        Gate::authorize('create', Role::class);
         return true;
     }
 

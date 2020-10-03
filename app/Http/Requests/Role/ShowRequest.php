@@ -3,6 +3,7 @@
 
 namespace App\Http\Requests\Role;
 
+use App\Models\Role;
 use App\Traits\VerifyRequestId;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -19,7 +20,7 @@ class ShowRequest extends FormRequest
     public function authorize()
     {
         $this->setIdName('role');
-//        Gate::authorize('view', Admin::class);
+        Gate::authorize('view', Role::class);
         return true;
     }
 }

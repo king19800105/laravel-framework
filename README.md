@@ -191,6 +191,8 @@ $de = $this->hash->decode($en); // 120000003
 
 - 断路器使用：https://github.com/king19800105/breaker
 
+- Http组件使用：https://laravel.com/docs/8.x/http-client
+
 - 加锁和解锁
 
 ```php
