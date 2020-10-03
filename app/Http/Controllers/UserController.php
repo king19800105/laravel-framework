@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\User\IndexRequest;
+use App\Http\Requests\User\PlayVideoRequest;
 use App\Http\Requests\User\ShowRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\ViewDocRequest;
 use App\Http\Responders\NoneResponder;
 use App\Http\Responders\User\GetInfoResponder;
 use App\Http\Responders\User\IndexResponder;
@@ -48,6 +51,23 @@ class UserController extends Controller
     }
 
     /**
+     * 更新用户信息
+     *
+     * @param UpdateRequest $request
+     * @param $id
+     * @return NoneResponder
+     * @throws \Throwable
+     */
+    public function update(UpdateRequest $request, $id)
+    {
+        $data = $request->validated();
+        $roleIds = $data['role_ids'] ?? [];
+        $this->userService->updateUser($data, $id, $roleIds);
+        return new NoneResponder();
+
+    }
+
+    /**
      * 获取用户信息
      *
      * @param Request $request
@@ -57,6 +77,26 @@ class UserController extends Controller
     {
         $info = $request->user();
         return new GetInfoResponder($info);
+    }
+
+    /**
+     * 播放视频
+     *
+     * @param PlayVideoRequest $request
+     */
+    public function playVideo(PlayVideoRequest $request)
+    {
+        dd('Do Play ...');
+    }
+
+    /**
+     * 浏览文档
+     *
+     * @param ViewDocRequest $request
+     */
+    public function viewDoc(ViewDocRequest $request)
+    {
+        dd('Do View ...');
     }
 
     /**

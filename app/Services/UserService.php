@@ -46,12 +46,13 @@ class UserService
      *
      * @param array $data
      * @param $id
+     * @param array $roleIds
      * @throws \Throwable
      */
-    public function updateUser(array $data, $id)
+    public function updateUser(array $data, $id, $roleIds = [])
     {
         throw_unless(
-            $this->userRepository->update($data, $id),
+            $this->userRepository->update($data, $id, $roleIds),
             new AccountException(__('reason.update_fail'))
         );
     }

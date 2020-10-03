@@ -28,7 +28,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|between:2,30|unique:roles',
+            'name'       => 'required|string|between:2,30|unique:roles',
+            'guard_name' => 'in:api,admin'
         ];
     }
 
@@ -40,7 +41,7 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'     => __('message.role.name'),
+            'name' => __('message.role.name'),
         ];
     }
 }

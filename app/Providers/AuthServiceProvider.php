@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
 use App\Policies\AdminPolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Admin::class      => AdminPolicy::class,
         Permission::class => PermissionPolicy::class,
         Role::class       => RolePolicy::class,
+        User::class       => UserPolicy::class,
     ];
 
     /**
@@ -32,8 +35,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::before(function (Admin $admin, $ability) {
-            return $admin->hasRole(config('manage.super_name')) ? true : null;
+        Gate::before(function ($auth, $ability) {
+            if ($auth instanceof User) {
+                return $auth->hasRole(config('manage.vip_name')) ? true : null;
+            }
+
+            if ($auth instanceof Admin) {
+                return $auth->hasRole(config('manage.super_name')) ? true : null;
+            }
         });
     }
 }

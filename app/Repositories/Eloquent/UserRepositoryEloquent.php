@@ -25,12 +25,17 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             ->create($data);
     }
 
-    public function update($data, $id)
+    public function update($data, $id, $roleIds = [])
     {
-        return $this
-            ->model
-            ->find($id)
-            ->update($data);
+        BaseRepository::transaction(function () use ($data, $id, $roleIds) {
+            $this
+                ->model
+                ->find($id)
+                ->syncRoles($roleIds)
+                ->update($data);
+        });
+
+        return true;
     }
 
     public function delete($id)

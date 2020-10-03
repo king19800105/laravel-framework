@@ -54,6 +54,8 @@ Route::group(['prefix' => 'backend/v1', 'middleware' => ['api', 'auth:admin']], 
 // 用户中心
 Route::group(['prefix' => 'user-center/v1', 'middleware' => ['api', 'auth:api', 'throttle:id']], function ($router) {
     $router->get('info', [UserController::class, 'getInfo']);
+    $router->get('play-video', [UserController::class, 'playVideo']);
+    $router->get('view-doc', [UserController::class, 'viewDoc']);
 });
 
 // 前台展示
