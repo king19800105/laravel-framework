@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.19)
 # Database: framework
-# Generation Time: 2020-10-03 05:05:17 +0000
+# Generation Time: 2020-10-04 03:23:57 +0000
 # ************************************************************
 
 
@@ -44,7 +44,7 @@ LOCK TABLES `fw_admins` WRITE;
 INSERT INTO `fw_admins` (`id`, `name`, `mobile`, `password`, `deleted_at`, `created_at`, `updated_at`)
 VALUES
 	(1,'Anthony','13564535304','$2y$10$R9V/c2pCiTqeetfFvRXaIO8qXGwo5b4QxOdz8Jwp8hvuCu6ieIdk6',NULL,'2020-09-25 17:05:50','2020-09-28 17:42:41'),
-	(2,'Anthony','13564535305','$2y$10$xABonfXtP8Z3PrpBAHP5IOtxQ0sBE5Jk84TiUn/S2eYucSDV0np56',NULL,'2020-09-25 17:56:11','2020-09-27 16:10:20');
+	(2,'Anthony223','13564535305','$2y$10$xABonfXtP8Z3PrpBAHP5IOtxQ0sBE5Jk84TiUn/S2eYucSDV0np56',NULL,'2020-09-25 17:56:11','2020-10-03 13:20:23');
 
 /*!40000 ALTER TABLE `fw_admins` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -172,7 +172,9 @@ LOCK TABLES `fw_model_has_roles` WRITE;
 INSERT INTO `fw_model_has_roles` (`role_id`, `model_type`, `model_id`)
 VALUES
 	(1,'App\\Models\\Admin',1),
-	(2,'App\\Models\\Admin',2);
+	(17,'App\\Models\\User',1),
+	(2,'App\\Models\\Admin',2),
+	(18,'App\\Models\\User',3);
 
 /*!40000 ALTER TABLE `fw_model_has_roles` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -197,6 +199,16 @@ CREATE TABLE `fw_operate_logs` (
   KEY `fw_operate_logs_uid_index` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+LOCK TABLES `fw_operate_logs` WRITE;
+/*!40000 ALTER TABLE `fw_operate_logs` DISABLE KEYS */;
+
+INSERT INTO `fw_operate_logs` (`id`, `uid`, `api`, `module`, `exec`, `ip`, `params`, `operated_at`, `created_at`)
+VALUES
+	(1,1,'api/backend/v1/role/1','角色模块','update','172.24.0.1','{\"name\":\"\\u8d85\\u7ea7\\u7ba1\\u7406\\u5458\"}','2020-10-03 14:04:38','2020-10-03 14:05:04'),
+	(2,1,'api/backend/v1/role/1','角色模块','update','172.24.0.1','{\"name\":\"\\u8d85\\u7ea7\\u7ba1\\u7406\\u5458\"}','2020-10-03 14:04:41','2020-10-03 14:05:04');
+
+/*!40000 ALTER TABLE `fw_operate_logs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table fw_password_resets
@@ -236,7 +248,21 @@ VALUES
 	(2,'修改管理员','admin','2020-10-02 11:29:42','2020-10-02 11:29:42'),
 	(3,'删除管理员','admin','2020-10-02 11:29:47','2020-10-02 11:29:47'),
 	(4,'管理员列表','admin','2020-10-02 11:30:04','2020-10-02 11:30:04'),
-	(5,'管理员详情','admin','2020-10-02 11:30:19','2020-10-02 11:30:19');
+	(5,'管理员详情','admin','2020-10-02 11:30:19','2020-10-02 11:30:19'),
+	(7,'添加权限','admin','2020-10-03 13:26:18','2020-10-03 13:26:18'),
+	(8,'修改权限','admin','2020-10-03 13:26:25','2020-10-03 13:26:25'),
+	(9,'删除权限','admin','2020-10-03 13:26:30','2020-10-03 13:26:30'),
+	(10,'权限详情','admin','2020-10-03 13:26:37','2020-10-03 13:26:37'),
+	(11,'权限列表','admin','2020-10-03 13:26:42','2020-10-03 13:26:42'),
+	(12,'添加角色','admin','2020-10-03 13:26:54','2020-10-03 13:26:54'),
+	(13,'修改角色','admin','2020-10-03 13:27:02','2020-10-03 13:27:02'),
+	(14,'删除角色','admin','2020-10-03 13:27:06','2020-10-03 13:27:06'),
+	(15,'角色详情','admin','2020-10-03 13:27:22','2020-10-03 13:27:22'),
+	(16,'角色列表','admin','2020-10-03 13:27:29','2020-10-03 13:27:29'),
+	(17,'分配权限','admin','2020-10-03 13:27:40','2020-10-03 13:27:40'),
+	(18,'视频播放','api','2020-10-03 13:27:40','2020-10-03 13:27:40'),
+	(20,'文档浏览','api','2020-10-03 19:44:03','2020-10-03 19:44:03'),
+	(21,'修改用户','admin','2020-10-03 19:44:03','2020-10-03 19:44:03');
 
 /*!40000 ALTER TABLE `fw_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -261,10 +287,15 @@ LOCK TABLES `fw_role_has_permissions` WRITE;
 
 INSERT INTO `fw_role_has_permissions` (`permission_id`, `role_id`)
 VALUES
-	(2,2),
-	(3,2),
 	(4,2),
-	(5,2);
+	(5,2),
+	(10,2),
+	(11,2),
+	(15,2),
+	(16,2),
+	(21,2),
+	(18,17),
+	(20,18);
 
 /*!40000 ALTER TABLE `fw_role_has_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -290,7 +321,9 @@ LOCK TABLES `fw_roles` WRITE;
 INSERT INTO `fw_roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`)
 VALUES
 	(1,'超级管理员','admin','2020-10-02 22:26:34','2020-10-02 22:26:34'),
-	(2,'管理员','admin','2020-10-02 23:36:48','2020-10-02 23:36:48');
+	(2,'管理员','admin','2020-10-02 23:36:48','2020-10-02 23:36:48'),
+	(17,'VIP用户','api','2020-10-03 18:51:52','2020-10-03 18:51:52'),
+	(18,'星级用户','api','2020-10-03 19:45:48','2020-10-03 19:45:48');
 
 /*!40000 ALTER TABLE `fw_roles` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -349,7 +382,8 @@ LOCK TABLES `fw_users` WRITE;
 
 INSERT INTO `fw_users` (`id`, `name`, `wx_open_id`, `wx_union_id`, `mobile`, `email`, `password`, `status`, `deleted_at`, `created_at`, `updated_at`)
 VALUES
-	(1,'Anthony','','','13564535305','king19800105@163.com','$2y$10$llob8mKeC5oNFjHgYuUlh.ikTkCxnZHQnYryOcGKHeMjuyIolYbQK',0,NULL,'2020-09-29 10:31:09','2020-09-29 10:31:36');
+	(1,'Anthony','','','13564535305','king19800105@163.com','$2y$10$llob8mKeC5oNFjHgYuUlh.ikTkCxnZHQnYryOcGKHeMjuyIolYbQK',0,NULL,'2020-09-29 10:31:09','2020-09-29 10:31:36'),
+	(3,'AnthonyQu','','','13564535304','king19800105@163.com','$2y$10$8FD56x5TD8T.v/b9aEP10utzpkRMABChbjudq/0mXpjq2T9vcZQ/C',0,NULL,'2020-10-03 19:49:22','2020-10-03 20:54:24');
 
 /*!40000 ALTER TABLE `fw_users` ENABLE KEYS */;
 UNLOCK TABLES;
