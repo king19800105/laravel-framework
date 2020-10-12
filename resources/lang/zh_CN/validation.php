@@ -133,6 +133,7 @@ return [
             'rule-name' => 'custom-message',
         ],
         'valid_mobile'   => ':attribute 格式不正确',
+        'valid_json_str' => ':attribute 数据格式有误'
     ],
 
     /*
