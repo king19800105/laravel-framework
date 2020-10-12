@@ -10,7 +10,7 @@ return [
         'model'      => 'model_full.stub',
     ],
     'namespace'  => [
-        'controller' => 'App\Http\Controllers\Backend',
+        'controller' => 'App\Http\Controllers',
         'request'    => 'App\Http\Requests',
         'responder'  => 'App\Http\Responders',
         'service'    => 'App\Services',
