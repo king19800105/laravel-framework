@@ -17,8 +17,4 @@ class {{name}} extends Model
         {{fields}}
     ];
 
-    protected $casts = [
-        'created_at' => 'Y-m-d H:i:s',
-        'updated_at' => 'Y-m-d H:i:s'
-    ];
 }
