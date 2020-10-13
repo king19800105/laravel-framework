@@ -51,7 +51,7 @@ class {{name}}Service
         ${{repo_attr}} = $this->{{repo_attr}}Repository->create($data);
         throw_unless(
             ${{repo_attr}},
-            new SystemException(__('message.system.store_fail'))
+            new SystemException(__('reason.store_fail'))
         );
     }
 
@@ -67,7 +67,7 @@ class {{name}}Service
         $ok = $this->{{repo_attr}}Repository->update($data, $id);
         throw_unless(
             $ok,
-            new SystemException(__('message.system.update_fail'))
+            new SystemException(__('reason.update_fail'))
         );
     }
 
@@ -82,7 +82,7 @@ class {{name}}Service
         $ok = $this->{{repo_attr}}Repository->delete($id);
         throw_unless(
             $ok,
-            new SystemException(__('message.system.delete_fail'))
+            new SystemException(__('reason.delete_fail'))
         );
     }
 }
