@@ -34,7 +34,7 @@
 - [x] 支持一条指令生成业务模块（整个业务流）
 - [x] 限流改支持用户id + ip限流
 - [x] 支持事件机制
-- [ ] 使用redis的bitmap实现布隆过滤器中间件
+- [x] 使用redis的bitmap实现布隆过滤器中间件
 
 ### app下结构说明
 - 控制器 Http/Controller
