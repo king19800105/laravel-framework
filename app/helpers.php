@@ -346,4 +346,17 @@ if (!function_exists('delete_null')) {
     }
 }
 
+if (!function_exists('batch_no')) {
+    function batch_no($prefix)
+    {
+        $time  = time();
+        $day   = date('ymdHi', $time - $time % 600);
+        $count = cache()->increment(\App\Console\Tasks\DestroyExpireBatchNo::BATCH_NO_KEY . $day);
+        $time  = $prefix . (int)(date('y', $time) - 15) . date('md') . str_pad($time - strtotime('today', $time), 5, 0, STR_PAD_LEFT);
+        if ($count) {
+            return $time . str_pad($count, 5, 0, STR_PAD_LEFT);
+        }
 
+        return $time . substr(microtime(), 2, 5);
+    }
+}

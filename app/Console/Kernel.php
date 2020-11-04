@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Components\Logging\LogQueueHandler;
+use App\Console\Tasks\DestroyExpireBatchNo;
 use App\Console\Tasks\ErrorLogCustomer;
 use App\Console\Tasks\MyTestTask;
 use App\Console\Tasks\OperateLogCustomer;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         ErrorLogCustomer::class,
         OperateLogCustomer::class,
+        DestroyExpireBatchNo::class,
         MyTestTask::class,
     ];
 
