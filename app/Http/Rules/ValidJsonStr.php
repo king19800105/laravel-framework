@@ -11,9 +11,12 @@ class ValidJsonStr implements Rule
 {
     protected $inKeys;
 
-    public function __construct($keys = [])
+    protected $isMust;
+
+    public function __construct($keys = [], $isMust = false)
     {
         $this->inKeys = $keys;
+        $this->isMust = $isMust;
     }
 
     /**
@@ -34,17 +37,18 @@ class ValidJsonStr implements Rule
         }
 
         $keys = array_keys($value);
-        if (!empty($keys)) {
-            foreach ($keys as $item) {
-                if (!in_array($item, $this->inKeys)) {
-                    return false;
-                }
-            }
-
-            return true;
+        if ($this->isMust) {
+            $diff = array_diff($this->inKeys, $keys);
+            return empty($diff);
         }
 
-        return false;
+        foreach ($keys as $item) {
+            if (!in_array($item, $this->inKeys)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
