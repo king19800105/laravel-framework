@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 
-
 use App\Models\Permission;
 use App\Repositories\Contracts\BaseRepository;
 use App\Repositories\Contracts\PermissionRepository;
@@ -55,13 +54,24 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
 
     public function findList()
     {
-        return $this->getOrCache('permission:find:list', function () {
+        return $this
+            ->model
+            ->select('*')
+            ->latest()
+            ->paginate(self::PAGE_NUM);
+    }
+
+    public function findAll($guard = 'admin')
+    {
+        return $this->getOrCache('permission:find:all', function () use ($guard) {
             return $this
                 ->model
                 ->select('*')
+                ->where('guard_name', $guard)
                 ->latest()
                 ->get();
         }, self::CACHE_TAG, 300);
+
 
     }
 }

@@ -70,7 +70,7 @@ abstract class BaseException extends Exception
         ERROR_METHOD_NOT_ALLOW_MESSAGE = '资源访问方式错误',
         ERROR_TOO_MANY_REQUESTS_MESSAGE = '访问过于频繁，请稍后再试',
         ERROR_HTTP_TIME_OUT_MESSAGE = '第三方资源访问超时',
-        ERROR_TOO_MANY_OPERATE_MESSAGE = '操作正在进行中，请稍后',
+        ERROR_TOO_MANY_OPERATE_MESSAGE = '操作正在进行中，请稍候',
         ERROR_NOT_LOGIN = '请先登入',
         ERROR_UNAUTHORIZED_MESSAGE = '账号或密码错误，请检查';
 

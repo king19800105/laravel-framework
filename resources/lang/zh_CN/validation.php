@@ -133,7 +133,7 @@ return [
             'rule-name' => 'custom-message',
         ],
         'valid_mobile'       => ':attribute 格式不正确',
-        'valid_json_str'     => ':attribute 数据格式有误',
+        'valid_json_str'     => ':attribute 数据格式有误，或必要参数缺少',
         'valid_between_date' => ':attribute 时间范围格式非法，或超出最大天数 :max 天',
     ],
 

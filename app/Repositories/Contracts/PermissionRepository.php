@@ -3,7 +3,6 @@
 namespace App\Repositories\Contracts;
 
 
-
 interface PermissionRepository
 {
     public function findById($id);
@@ -15,4 +14,6 @@ interface PermissionRepository
     public function update(array $data, $id);
 
     public function delete($id);
+
+    public function findAll($guard = 'admin');
 }

@@ -11,6 +11,7 @@ use App\Http\Requests\Role\ShowRequest;
 use App\Http\Requests\Role\StoreRequest;
 use App\Http\Requests\Role\UpdateRequest;
 use App\Http\Responders\NoneResponder;
+use App\Http\Responders\Role\IndexNoPageResponder;
 use App\Http\Responders\Role\IndexResponder;
 use App\Http\Responders\Role\ShowResponder;
 use App\Services\PermissionService;
@@ -35,6 +36,12 @@ class RoleController
     {
         $result = $this->permissionService->getRoleList();
         return new IndexResponder($result);
+    }
+
+    public function indexAll()
+    {
+        $result = $this->permissionService->getAllRoles();
+        return new IndexNoPageResponder($result);
     }
 
     /**
@@ -90,23 +97,6 @@ class RoleController
     public function destroy(DestroyRequest $request, $id)
     {
         $this->permissionService->deleteRole($id);
-        return new NoneResponder();
-    }
-
-    /**
-     * 角色分配权限
-     *
-     * @param AssignRequest $request
-     * @return NoneResponder
-     * @throws \Throwable
-     */
-    public function assign(AssignRequest $request)
-    {
-        [
-            'id'             => $id,
-            'permission_ids' => $permissionIds
-        ] = $request->validated();
-        $this->permissionService->assignPermissions($id, $permissionIds);
         return new NoneResponder();
     }
 }

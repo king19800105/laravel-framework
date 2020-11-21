@@ -78,6 +78,16 @@ class PermissionService
     }
 
     /**
+     * 所有权限
+     *
+     * @return mixed
+     */
+    public function getAllPermissions()
+    {
+        return $this->permissionRepository->findAll();
+    }
+
+    /**
      * 添加角色
      *
      * @param array $data
@@ -85,8 +95,10 @@ class PermissionService
      */
     public function storeRole(array $data)
     {
+
+        $permissionIds = $data['permission_ids'] ?? [];
         throw_unless(
-            $this->roleRepository->create($data),
+            $this->roleRepository->create($data, $permissionIds),
             new AccountException(__('reason.store_fail'))
         );
     }
@@ -100,8 +112,9 @@ class PermissionService
      */
     public function updateRole(array $data, $id)
     {
+        $permissionIds = $data['permission_ids'] ?? [];
         throw_unless(
-            $this->roleRepository->update($data, $id),
+            $this->roleRepository->update($data, $id, $permissionIds),
             new AccountException(__('reason.store_fail'))
         );
     }
@@ -131,21 +144,6 @@ class PermissionService
     }
 
     /**
-     * 分配权限
-     *
-     * @param $roleId
-     * @param $permissionIds
-     * @throws \Throwable
-     */
-    public function assignPermissions($roleId, $permissionIds)
-    {
-        throw_unless(
-            $this->roleRepository->assign($roleId, $permissionIds),
-            new SystemException(__('reason.store_fail'))
-        );
-    }
-
-    /**
      * 获取角色详情
      *
      * @param $id
@@ -164,5 +162,15 @@ class PermissionService
     public function getRoleList()
     {
         return $this->roleRepository->findList();
+    }
+
+    /**
+     * 获取所有角色
+     *
+     * @return mixed
+     */
+    public function getAllRoles()
+    {
+        return $this->roleRepository->findAll();
     }
 }

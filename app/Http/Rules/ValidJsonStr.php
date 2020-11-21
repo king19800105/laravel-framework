@@ -9,14 +9,16 @@ use Illuminate\Support\Arr;
 
 class ValidJsonStr implements Rule
 {
+    public const MUST_ALL = true;
+
     protected $inKeys;
 
-    protected $isMust;
+    protected $must;
 
-    public function __construct($keys = [], $isMust = false)
+    public function __construct($keys = [], $must = null)
     {
         $this->inKeys = $keys;
-        $this->isMust = $isMust;
+        $this->must = $must;
     }
 
     /**
@@ -37,14 +39,33 @@ class ValidJsonStr implements Rule
         }
 
         $keys = array_keys($value);
-        if ($this->isMust) {
-            $diff = array_diff($this->inKeys, $keys);
-            return empty($diff);
+        if (!empty($this->must)) {
+            if (!$this->validateMustFields($keys)) {
+                return false;
+            }
         }
 
         foreach ($keys as $item) {
             if (!in_array($item, $this->inKeys)) {
                 return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected function validateMustFields($keys)
+    {
+        $diff = array_diff($this->inKeys, $keys);
+        if ($this->must === self::MUST_ALL) {
+            return empty($diff);
+        }
+
+        if (is_array($this->must)) {
+            foreach ($this->must as $key => $item) {
+                if (in_array($item, $diff)) {
+                    return false;
+                }
             }
         }
 

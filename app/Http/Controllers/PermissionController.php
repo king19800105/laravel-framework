@@ -10,6 +10,7 @@ use App\Http\Requests\Permission\DestroyRequest;
 use App\Http\Requests\Permission\StoreRequest;
 use App\Http\Requests\Permission\UpdateRequest;
 use App\Http\Responders\NoneResponder;
+use App\Http\Responders\Permission\IndexNoPageResponder;
 use App\Http\Responders\Permission\IndexResponder;
 use App\Services\PermissionService;
 
@@ -33,6 +34,12 @@ class PermissionController extends Controller
     {
         $result = $this->permissionService->getPermissionList();
         return new IndexResponder($result);
+    }
+
+    public function indexAll()
+    {
+        $result = $this->permissionService->getAllPermissions();
+        return new IndexNoPageResponder($result);
     }
 
     /**

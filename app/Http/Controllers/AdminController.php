@@ -59,9 +59,8 @@ class AdminController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $data    = $request->validated();
-        $roleIds = $data['role_ids'] ?? [];
-        $this->adminService->storeAdmin($data, $roleIds);
+        $data = $request->validated();
+        $this->adminService->storeAdmin($data);
         return new NoneResponder();
     }
 
@@ -75,9 +74,8 @@ class AdminController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $data    = $request->validated();
-        $roleIds = $data['role_ids'] ?? [];
-        $this->adminService->updateAdmin($data, $id, $roleIds);
+        $data = $request->validated();
+        $this->adminService->updateAdmin($data, $id);
         return new NoneResponder();
     }
 

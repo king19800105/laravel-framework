@@ -346,6 +346,7 @@ if (!function_exists('delete_null')) {
     }
 }
 
+
 if (!function_exists('batch_no')) {
     function batch_no($prefix)
     {
@@ -360,3 +361,6 @@ if (!function_exists('batch_no')) {
         return $time . substr(microtime(), 2, 5);
     }
 }
+
+
+
