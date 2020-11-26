@@ -96,6 +96,8 @@ class RedisQueueClient implements QueueClient
             if ($this->redis->zRem($key, $value)) {
                 return $value;
             }
+
+            return true;
         }
 
         return [];
