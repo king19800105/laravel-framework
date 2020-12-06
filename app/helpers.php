@@ -28,6 +28,18 @@ if (!function_exists('json_to_arr')) {
     }
 }
 
+if (!function_exists('check_words')) {
+    function check_words($str, $arr)
+    {
+        if (empty($str) || empty($arr)) {
+            return [];
+        }
+
+        $pattern = '/' . implode('|', $arr) . '/i';
+        preg_match($pattern, $str, $matches);
+        return $matches;
+    }
+}
 
 if (!function_exists('convert_storage_to_pub')) {
     function convert_storage_to_pub($storageUrl, $baseUrl)
