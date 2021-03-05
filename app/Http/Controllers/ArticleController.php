@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Components\File\FileHandler;
 use App\Components\Hash\HashHandler;
 use App\Components\Local\LocalCache;
+use App\Http\Responders\NoneResponder;
 use App\Http\Responders\OriginalResponder;
 use Vtiful\Kernel\Excel;
 
@@ -24,6 +25,7 @@ class ArticleController extends Controller
 
     public function show($id)
     {
+        return new NoneResponder();
 //        return new OriginalResponder([
 //            'title'   => '标题',
 //            'content' => '内容'

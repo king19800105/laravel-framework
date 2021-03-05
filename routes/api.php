@@ -59,7 +59,7 @@ Route::group(['prefix' => 'user-center/v1', 'middleware' => ['api', 'auth:api', 
 
 // 前台展示
 Route::group(['prefix' => 'v1', 'middleware' => ['api']], function ($router) {
-    $router->get('article/{id}', [ArticleController::class, 'show']);
+    $router->get('article/{id}', [ArticleController::class, 'show'])->middleware('limiter');
 });
 
 

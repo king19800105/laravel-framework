@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'role'             => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'operate'          => \App\Http\Middleware\OperateSave::class,
         'breaker'          => \App\Http\Middleware\CircuitBreaker::class,
-        'bloom'            => \App\Http\Middleware\BloomFilter::class
+        'bloom'            => \App\Http\Middleware\BloomFilter::class,
+        'limiter'          => \App\Http\Middleware\RateLimiter::class
     ];
 }

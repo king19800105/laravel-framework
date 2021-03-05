@@ -31,7 +31,7 @@ if (!function_exists('json_to_arr')) {
 if (!function_exists('check_words')) {
     function check_words($str, $arr)
     {
-        if (empty($str) || empty($arr)) {
+        if (empty($str) || empty($arr) || count($arr) > 1000) {
             return [];
         }
 
