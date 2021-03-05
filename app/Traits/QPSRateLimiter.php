@@ -28,10 +28,10 @@ trait QPSRateLimiter
      * @param string $apiName 接口名称或标识
      * @param string $restriction 约束值可以是用户id、用户ip、或id+ip的组合
      * @param int $qps 每秒的请求qps量级
-     *
+     * @param int $millisecond 毫秒过期时间
      * @return bool true表示通过、false表示触发限流
      */
-    public function limit(string $apiName, string $restriction, int $qps = 1): bool
+    public function limit(string $apiName, string $restriction, int $qps = 3, int $millisecond = 1050): bool
     {
         if (empty($apiName) || empty($restriction) || $qps <= 0) {
             return false;
@@ -48,7 +48,7 @@ trait QPSRateLimiter
         if (!Redis::exists($cacheKey)) {
             $redisHandler = Redis::pipeline();
             $redisHandler->rpush($cacheKey, 1);
-            $redisHandler->pexpire($cacheKey, 11050);
+            $redisHandler->pexpire($cacheKey, $millisecond);
             $redisHandler->exec();
         } else {
             Redis::rpushx($cacheKey, 1);
