@@ -20,7 +20,16 @@ trait QPSRateLimiter
      *
      * @var string
      */
-    protected string $rateLimiterKey = 'qps:limit:%s:%s';
+    protected static string $rateLimiterKey = 'qps:limit:%s:%s';
+
+    protected static string $luaScript = <<<'LUA'
+local curr = redis.call("INCR",KEYS[1])
+if curr == 1
+then
+    redis.call('PEXPIRE', KEYS[1], ARGV[1])
+end
+return curr
+LUA;
 
     /**
      * 校验是否触发限流
@@ -31,29 +40,15 @@ trait QPSRateLimiter
      * @param int $millisecond 毫秒过期时间
      * @return bool true触发限流、false表示通过
      */
-    public function limit(string $apiName, string $restriction, int $qps = 3, int $millisecond = 1050): bool
+    public function limit(string $apiName, string $restriction, int $qps = 2, int $millisecond = 1050): bool
     {
         if (empty($apiName) || empty($restriction) || $qps <= 0) {
             return false;
         }
 
         // 组装key
-        $cacheKey = sprintf($this->rateLimiterKey, $apiName, $restriction);
-        // 如果长度达到qps限制量级，则触发限流
-        if (Redis::llen($cacheKey) > $qps) {
-            return true;
-        }
-
-        // 如果key储存在，表示第一次请求，则初始化数量和过期时间。否则加一
-        if (!Redis::exists($cacheKey)) {
-            $redisHandler = Redis::pipeline();
-            $redisHandler->rpush($cacheKey, 1);
-            $redisHandler->pexpire($cacheKey, $millisecond);
-            $redisHandler->exec();
-        } else {
-            Redis::rpushx($cacheKey, 1);
-        }
-
-        return false;
+        $cacheKey = sprintf(self::$rateLimiterKey, $apiName, $restriction);
+        $callResult = Redis::eval(self::$luaScript, 1, $cacheKey, $millisecond);
+        return $callResult > $qps;
     }
 }
